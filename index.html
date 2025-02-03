@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín? 💖</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6f0;
+            color: #d6336c;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .gif-container {
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 250px;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #c9184a;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            position: absolute;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzB1ZXM3ZTd3ZDJnenBleGV2cTlobjg5YzQzNmVyMDh5czg3N2FkaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/azi3GTPtxWKCQ/giphy.gif');
+            background-size: cover;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-200px) scale(1.4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>¿Quieres ser mi San Valentín? ❤️</h1>
+
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/AXhbp00D9dxF9BCqpn/giphy.gif?cid=ecf05e473nm87y695d7ywn7ezpu3jb4ldnt2vn470omqq8gk&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+            alt="Ositos abrazándose">
+    </div>
+
+    <button onclick="yes()">Sí 😍</button>
+    <button id="noBtn" onclick="moveButton()">No 😭</button>
+
+    <div class="hearts"></div>
+
+    <script>
+        function yes() {
+            document.body.innerHTML = `
+                <h1>¡Sabía que dirías que sí! ❤️</h1>
+                <p>Eres la mejor. 😘</p>
+                <img src="https://media.giphy.com/media/xUOxf5WgkwEcSRtzAk/giphy.gif?cid=ecf05e479pyll5ovxs8dg2phjzp46fn4aohiqng25ga0yl4b&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Osito feliz">
+            `;
+        }
+
+        function moveButton() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            document.getElementById("noBtn").style.left = `${x}px`;
+            document.getElementById("noBtn").style.top = `${y}px`;
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            document.querySelector(".hearts").appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+
+</html>
